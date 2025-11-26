@@ -4,9 +4,6 @@
 
 #include <stdint.h>
 
-/*---------------------------------------------------------------------------
- * Các định nghĩa cơ bản
- *---------------------------------------------------------------------------*/
 #define configUSE_PREEMPTION                    1
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 0
 #define configUSE_IDLE_HOOK                     0
@@ -31,12 +28,11 @@
 #define configTIMER_QUEUE_LENGTH                5
 #define configTIMER_TASK_STACK_DEPTH            ( configMINIMAL_STACK_SIZE * 2 )
 
-/* Cấp phát bộ nhớ */
 #define configSUPPORT_STATIC_ALLOCATION         1
 #define configSUPPORT_DYNAMIC_ALLOCATION        1
 #define configAPPLICATION_ALLOCATED_HEAP        1
 
-/* Kiểm tra lỗi */
+/* error ispect */
 #define configCHECK_FOR_STACK_OVERFLOW          2
 #define configUSE_MALLOC_FAILED_HOOK            1
 
@@ -51,7 +47,7 @@
 #define configKERNEL_INTERRUPT_PRIORITY  ( configLIBRARY_LOWEST_INTERRUPT_PRIORITY << (8 - configPRIO_BITS) )
 #define configMAX_SYSCALL_INTERRUPT_PRIORITY ( configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY << (8 - configPRIO_BITS) )
 
-/* TrustZone / FPU / MPU cho port ARM_CM33_NTZ */
+/* TrustZone / FPU / MPU for port ARM_CM33_NTZ */
 #define configENABLE_FPU                        0
 #define configENABLE_MPU                        0
 #define configENABLE_TRUSTZONE                  0

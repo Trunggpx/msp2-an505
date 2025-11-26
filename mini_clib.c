@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include <stddef.h>   // <-- bắt buộc để có size_t
+#include <stddef.h>  
 
 void *memset(void *dest, int value, size_t n)
 {

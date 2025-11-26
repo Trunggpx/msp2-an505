@@ -17,7 +17,7 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTCB,
     *pulIdleStackSize = configMINIMAL_STACK_SIZE;
 }
 
-/* Nếu configUSE_TIMERS == 1 và configSUPPORT_STATIC_ALLOCATION == 1 */
+
 #if ( configUSE_TIMERS == 1 ) && ( configSUPPORT_STATIC_ALLOCATION == 1 )
 static StaticTask_t xTimerTaskTCB;
 static StackType_t  xTimerTaskStack[ configTIMER_TASK_STACK_DEPTH ];
@@ -42,7 +42,7 @@ void vAssertCalled(const char *file, int line)
     while(1) { }
 }
 
-/* Stack overflow hook (nếu bật) */
+
 void vApplicationStackOverflowHook( TaskHandle_t xTask,
                                     char *pcTaskName )
 {
@@ -52,15 +52,14 @@ void vApplicationStackOverflowHook( TaskHandle_t xTask,
     while(1) { }
 }
 
-/* Malloc failed hook (nếu bật) */
+
 void vApplicationMallocFailedHook( void )
 {
     __asm("bkpt 0");
     while(1) { }
 }
 
-/*-----------------------------------------------------------*/
-/* Demo Task: in "Hello from FreeRTOS" qua UART mỗi 1 giây */
+
 static void TaskA(void *p)
 {
     (void)p;
@@ -76,7 +75,6 @@ int main(void)
 {
     uart_init();
 
-    /* tạo 1 task FreeRTOS */
     BaseType_t r = xTaskCreate(
         TaskA,          /* function */
         "A",            /* name */
@@ -87,14 +85,13 @@ int main(void)
     );
 
     if (r != pdPASS) {
-        /* Nếu fail thì assert */
+  
         vAssertCalled(__FILE__, __LINE__);
     }
 
-    /* start scheduler */
+ 
     vTaskStartScheduler();
 
-    /* Nếu tới đây là lỗi (không đủ heap tạo idle/timer task) */
     vAssertCalled(__FILE__, __LINE__);
 
     while (1) { }

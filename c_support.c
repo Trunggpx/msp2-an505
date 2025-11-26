@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stddef.h>
 
-/* Implement tối giản cho memset */
+/* Implement for memset */
 void *memset(void *s, int c, size_t n)
 {
     uint8_t *p = (uint8_t *)s;
@@ -12,7 +12,7 @@ void *memset(void *s, int c, size_t n)
     return s;
 }
 
-/* Implement tối giản cho memcpy (FreeRTOS cũng hay dùng) */
+/* Implement for memcpy */
 void *memcpy(void *dest, const void *src, size_t n)
 {
     uint8_t *d = (uint8_t *)dest;
@@ -24,8 +24,5 @@ void *memcpy(void *dest, const void *src, size_t n)
     return dest;
 }
 
-/* Stub cho hàm unwind mà linker đòi khi không link libgcc */
-void __aeabi_unwind_cpp_pr0(void)
-{
-    /* Không dùng C++ exception nên để trống */
-}
+/* link unwind with libgcc */
+void __aeabi_unwind_cpp_pr0(void){}
